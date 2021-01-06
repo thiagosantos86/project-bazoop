@@ -1,64 +1,42 @@
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    id("org.springframework.boot") version "2.3.4.RELEASE"
+    id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.3.72"
-    id("org.gradle.maven-publish")
+    kotlin("plugin.spring") version "1.3.72"
 }
 
+group = "com.zoop.bazoop"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_11
+
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("com.beust:klaxon:5.0.1")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-tasks {
-    compileKotlin {
-        kotlinOptions.jvmTarget = "1.8"
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        /* Excluding Tomcat dependency */
+        exclude(module = "spring-boot-starter-tomcat")
     }
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-
-    "test"(Test::class) {
-        useJUnitPlatform()
-        testLogging {
-            events("PASSED", "FAILED", "SKIPPED")
-            exceptionFormat = TestExceptionFormat.FULL
-        }
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
 }
 
-val sourcesJar by tasks.registering(Jar::class) {
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
-publishing {
-    repositories {
-        maven {
-            url = uri("https://nexus.zoop.tech/repository/maven-releases/")
-            credentials {
-                username = "jenkins"
-                password = "jenkins"
-            }
-        }
-    }
-    publications {
-        register("mavenJava", MavenPublication::class) {
-            from(components["java"])
-            artifact(sourcesJar.get())
-        }
+tasks.withType<KotlinCompile> {
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xjsr305=strict")
+        jvmTarget = "11"
     }
 }
