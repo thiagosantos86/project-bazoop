@@ -16,44 +16,41 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping( "/bazoop",produces = [MediaType.APPLICATION_JSON_VALUE])
-class ClienteController  {
+@RequestMapping("/bazoop", produces = [MediaType.APPLICATION_JSON_VALUE])
+class ClienteController {
     @Autowired
     lateinit var facade: ClienteFacade
 // refatora
 
-@PostMapping("/criarcliente")
-    fun criarCliente(@RequestBody cliente: ClienteTO):ResponseEntity<ClienteTOResponse> {
-    var clint = facade.criarCliente(cliente)
-    return ResponseEntity.ok(facade.criarCliente(cliente))
-}
-@PostMapping("/criarconta")
-    fun criarconta(@RequestBody contadigital: Contadigital):ResponseEntity<Contadigital>{
-    var conta = facade.criarconta(contadigital)
-    return ResponseEntity.ok(facade.criarconta(contadigital))
+    @PostMapping("/criarcliente")
+    fun criarCliente(@RequestBody cliente: ClienteTO): ResponseEntity<ClienteTOResponse> {
+
+        return ResponseEntity.ok(facade.criarCliente(cliente))
     }
 
-@DeleteMapping("/deletarcliente")
+    @PostMapping("/criarconta")
+    fun criarconta(@RequestBody contadigital: Contadigital): ResponseEntity<Contadigital> {
+        var conta = facade.criarconta(contadigital)
+        return ResponseEntity.ok(facade.criarconta(contadigital))
+    }
+
+    @DeleteMapping("/deletarcliente")
     fun deletar(cliente: ClienteTO): ResponseEntity<Unit> {
-    var delet =facade.deletar(cliente)
-    return ResponseEntity.ok(facade.deletar(cliente))
+
+        return ResponseEntity.ok(facade.deletar(cliente))
     }
-//put alterar
-@PutMapping("/alterarcliente")
-    fun alterarcliente(cliente : ClienteTO): ResponseEntity<ClienteTOResponse> {
-    var alterar =facade.alterarCliente(cliente)
-    return ResponseEntity.ok(facade.alterarCliente(cliente))
+
+    //put alterar
+    @PutMapping("/alterarcliente")
+    fun alterarcliente(cliente: ClienteTO): ResponseEntity<ClienteTOResponse> {
+
+        return ResponseEntity.ok(facade.alterarCliente(cliente))
     }
-@GetMapping("/clientes")
-    fun listarClientes(): ResponseEntity<List<ClienteTO>>
-    {
+
+    @GetMapping("/clientes")
+    fun listarClientes(): ResponseEntity<List<ClienteTO>> {
         return ResponseEntity.ok(facade.obterTodosClientes())
     }
 }
-
-
-
-
-
 
 // infra estrutura do jsom
