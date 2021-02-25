@@ -1,7 +1,7 @@
 package com.zoop.bazoop.application.model
 
 import model.Cliente
-import model.Cpf
+//import model.Cpf
 import java.time.LocalDate
 
 open class ClienteTO {
@@ -11,7 +11,7 @@ open class ClienteTO {
 
     fun toDomain(): Cliente {
         return Cliente().also {
-            it.cpf = Cpf(cpf!!)
+            it.cpf = Cliente.Cpf(cpf!!)
             it.nome = nome!!
             it.data = data!!
         }

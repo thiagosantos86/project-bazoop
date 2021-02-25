@@ -1,4 +1,8 @@
 package model
+import com.zoop.bazoop.business.Contadigital
+import com.zoop.bazoop.impl.ContaRepository
+//import org.graalvm.compiler.debug.TTY.print
+//import org.graalvm.compiler.debug.TTY.println
 import java.time.LocalDate
 import java.util.Random
 
@@ -9,33 +13,34 @@ import java.util.Random
      var id: Int = Random().nextInt(100000000)
 ) {
 
-    fun cpfIsValid(cpf: Cpf): Boolean {
+     fun cpfIsValid(cpf: Cpf): Boolean {
 
-        var result = false
+         var result = false
 
-        if (cpf.value.length == 11) {
+         if (cpf.value.length == 11) {
 
-            print("Cliente com cpf valido")
-            result = true
-        }else{
-            println("Cliente com cpf invalido")
+             print("Cliente com cpf valido")
+             result = true
+         } else {
+             println("Cliente com cpf invalido")
+         }
+         return result
+     }
+// lista de contas generikis
 
-        }
-        return result
+     fun listarcontas(contadigital: Contadigital): List<Contadigital> {
+         for (contadigital in listarcontas(Contadigital())) {
+             if (contadigital.id == contadigital.id)
+                 return listOf(contadigital)
+         }
+     }
 
+         // private fun validateCPFLength(cpf: String) = cpf.length == 11
 
-    }
+         fun imprimirInfo() {
+             print("o nome $nome e cpf ${cpf.value} e a data de nasc ${data}")
+         }
 
+         class Cpf(var value: String)
+     }
 
-   // private fun validateCPFLength(cpf: String) = cpf.length == 11
-
-
-
-    fun imprimirInfo()
-    {
-        print("o nome $nome e cpf ${cpf.value} e a data de nasc ${data}")
-
-    }
-
-}
-class Cpf( var value: String)
