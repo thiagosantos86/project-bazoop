@@ -37,14 +37,11 @@ import java.util.Random
          }
          // mandar um exeçao de negocio
          // tratar controler,serviço,to
-         else{
-             return  throw ContaException()
-         }
-
+         return  throw ContaException()
      }
 
 
-         // private fun validateCPFLength(cpf: String) = cpf.length == 11
+     // private fun validateCPFLength(cpf: String) = cpf.length == 11
 
          fun imprimirInfo() {
              print("o nome $nome e cpf ${cpf.value} e a data de nasc ${data}")
