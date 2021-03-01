@@ -32,7 +32,7 @@ class TesteContaDigital {
 
     @Test
     fun `teste consultar extrato`() {
-        var conta = Contadigital(criarCliente())
+        var conta = Contadigital()
         conta.Consultarextrato()
 
 
@@ -60,12 +60,12 @@ class TesteContaDigital {
     @Test
     fun `teste credito valido`() {
         var creditar  = operacaoServiceImpl(ContaRepository())
-        creditar.credito(Contadigital(criarCliente()),2000)
+        creditar.credito(Contadigital(),2000)
     }
     @Test
     fun `teste transferencia valido`() {
         var tranferir  = operacaoServiceImpl(ContaRepository())
-        tranferir.transferencia(Contadigital(criarCliente()), Contadigital(criarCliente()),200)
+        tranferir.transferencia(Contadigital(), Contadigital(),200)
     }
     @Test
     fun `teste criarCliente`() {
@@ -80,7 +80,7 @@ class TesteContaDigital {
     @Test
     fun `teste fecharConta`() {
 
-        var fechar = Contadigital(criarCliente()).fecharConta()
+        var fechar = Contadigital().fecharConta()
 
     }
     private fun criarCliente(): Cliente {

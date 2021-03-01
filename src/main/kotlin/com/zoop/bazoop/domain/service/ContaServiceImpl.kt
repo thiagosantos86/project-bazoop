@@ -10,6 +10,6 @@ class ContaServiceImpl (
     private val repository: ContaRepository
 ) : ContaService {
     override fun criarConta(cliente: Cliente): Contadigital {
-        return repository.salvar(Contadigital(cliente))
+        return repository.salvar(Contadigital(cliente = cliente))
     }
 }

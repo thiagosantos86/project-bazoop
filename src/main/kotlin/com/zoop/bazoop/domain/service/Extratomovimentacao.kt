@@ -3,11 +3,11 @@ package com.zoop.bazoop.domain.service
 import com.zoop.bazoop.business.Contadigital
 import model.Cliente
 
-class Extratomovimentacao(cliente: Cliente) : Contadigital(cliente){
-    fun Debito(debito : Int)
+class Extratomovimentacao(cliente: Cliente) : Contadigital(cliente = cliente) {
+    fun Debito(debito : Double)
     {
 
-        var Saldoatualizado :Int
+        var Saldoatualizado :Double
 
         Saldoatualizado = Saldo - debito
         if (Saldoatualizado >= 0){
@@ -18,10 +18,10 @@ class Extratomovimentacao(cliente: Cliente) : Contadigital(cliente){
     }
 
 
-fun Credito(creditado : Int)
+fun Credito(creditado : Double)
 {
 
-    var Saldoatualizado :Int
+    var Saldoatualizado :Double
 
     Saldoatualizado = Saldo + creditado
     if (Saldoatualizado >= 0){

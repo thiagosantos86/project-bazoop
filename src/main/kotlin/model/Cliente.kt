@@ -1,6 +1,7 @@
 package model
 import com.zoop.bazoop.business.Contadigital
-import com.zoop.bazoop.impl.ContaRepository
+import com.zoop.bazoop.domain.ClienteNaoEncontradoException
+import com.zoop.bazoop.domain.service.ContaException
 //import org.graalvm.compiler.debug.TTY.print
 //import org.graalvm.compiler.debug.TTY.println
 import java.time.LocalDate
@@ -10,8 +11,10 @@ import java.util.Random
      var nome: String="A",
      var cpf : Cpf = Cpf("12345678910"),
      var data : LocalDate = LocalDate.of(2018,2,2),
-     var id: Int = Random().nextInt(100000000)
-) {
+     var id: Int = Random().nextInt(100000000),
+     val contas: MutableList<Contadigital> = mutableListOf()
+
+ ) {
 
      fun cpfIsValid(cpf: Cpf): Boolean {
 
@@ -28,12 +31,18 @@ import java.util.Random
      }
 // lista de contas generikis
 
-     fun listarcontas(contadigital: Contadigital): List<Contadigital> {
-         for (contadigital in listarcontas(Contadigital())) {
-             if (contadigital.id == contadigital.id)
-                 return listOf(contadigital)
+     fun criarConta():Contadigital{
+         if(contas.size < 3 ){
+           return Contadigital(this).also { contas.add(it) }
          }
+         // mandar um exeçao de negocio
+         // tratar controler,serviço,to
+         else{
+             return  throw ContaException()
+         }
+
      }
+
 
          // private fun validateCPFLength(cpf: String) = cpf.length == 11
 

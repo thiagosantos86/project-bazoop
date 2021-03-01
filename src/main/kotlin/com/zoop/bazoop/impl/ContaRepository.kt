@@ -1,7 +1,8 @@
 package com.zoop.bazoop.impl
 
 import com.zoop.bazoop.business.Contadigital
-import model.Cpf
+import com.zoop.bazoop.domain.ClienteNaoEncontradoException
+//import model.Cpf
 import org.springframework.stereotype.Repository
 import java.time.LocalDate
 import kotlin.random.Random
@@ -29,8 +30,20 @@ class ContaRepository {
 
     fun listar(): MutableList<Contadigital> = database
 
+    fun excluir(contaId: Int) {
 
+        if(!database.removeIf { it.id == contaId })  {throw ClienteNaoEncontradoException()
+        }
+    }
+
+    fun alterar(contadigital: Contadigital?): Contadigital? {
+
+        return contadigital
+    }
 }
+
+
+
 
 data class Cliente(
     val nome: String,
@@ -38,7 +51,7 @@ data class Cliente(
     val nascimento: LocalDate,
     val id: Long = Random.nextLong(100000000)
 ) {
-    fun cpfIsValid(cpf: Cpf): Boolean {
+    fun cpfIsValid(cpf: model.Cliente.Cpf): Boolean {
 
         var result = false
 
