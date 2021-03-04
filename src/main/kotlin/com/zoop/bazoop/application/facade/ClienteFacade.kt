@@ -12,47 +12,43 @@ import kotlin.random.Random
 @Component
 class ClienteFacade {
     @Autowired
-    lateinit var repository : ClienteRepository
-    fun obterTodosClientes() :List<ClienteTOResponse>{
+    lateinit var repository: ClienteRepository
+    fun obterTodosClientes(): List<ClienteTOResponse> {
 
-        return listOf()
+
+        return repository.listar().map { ClienteTOResponse.fromCliente(it) }
+
     }
+
     // TODO: 23/12/2020
     //criar cliente
-    fun criarCliente(request: ClienteTO): ClienteTOResponse{
+    fun criarCliente(request: ClienteTO): ClienteTOResponse {
         val cliente = request.toDomain()
         repository.salvar(cliente)
 
         return ClienteTOResponse.fromCliente(cliente)
+    }
+
+    fun obterCliente(id: Int): ClienteTOResponse {
+        return ClienteTOResponse.fromCliente(
+            repository.obter(id)
+        )
     }
 
     //deletar cliente
-    fun deletar(cliente: ClienteTO){
-
-
-        if (this.criarCliente(cliente) == cliente) {
-
-                    return
-        }
+    fun deletar(id: Int) {
+        repository.excluir(id)
     }
-    fun alterarCliente(request: ClienteTO): ClienteTOResponse{
-        val cliente = request.toDomain()
-        repository.salvar(cliente)
+
+    fun alterarCliente(id: Int, request: ClienteTO): ClienteTOResponse {
+        val cliente = repository.obter(id)
+        request.alterar(cliente)
+        repository.alterar(cliente)
 
         return ClienteTOResponse.fromCliente(cliente)
     }
 
 
-    //criar conta
-    fun criarconta(contadigital: Contadigital): Contadigital {
-        var cliente: Cliente
-        var saldo: Long = 0
-        var id: Long = Random.nextLong(100000000)
-        var Numconta: Int = java.util.Random().nextInt(1000) + 1
-
-        println("""seu saldo ${saldo}  seu id $id seu numConta $Numconta""")
-        return contadigital
-    }
 
     //  traduçao de cliente para  cliente response
 }

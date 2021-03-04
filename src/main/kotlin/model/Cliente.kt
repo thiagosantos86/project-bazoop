@@ -22,10 +22,10 @@ import java.util.Random
 
          if (cpf.value.length == 11) {
 
-             print("Cliente com cpf valido")
+             println("\n Cliente com cpf valido \n")
              result = true
          } else {
-             println("Cliente com cpf invalido")
+             println("\n Cliente com cpf invalido \n")
          }
          return result
      }

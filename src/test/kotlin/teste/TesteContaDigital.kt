@@ -5,7 +5,7 @@ import com.zoop.bazoop.domain.service.Extratomovimentacao
 import com.zoop.bazoop.domain.service.operacaoServiceImpl
 import com.zoop.bazoop.impl.ContaRepository
 import model.Cliente
-import model.Cpf
+//import model.Cpf
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
 import kotlin.random.Random
@@ -15,7 +15,7 @@ class TesteContaDigital {
 
     @Test
     fun `teste validar cpf`() {
-        var cliente = criarCliente()
+        var cliente = Cliente()
         var result = cliente.cpfIsValid(cliente.cpf)
         assert(result)
 
@@ -23,8 +23,8 @@ class TesteContaDigital {
 
     @Test
     fun `teste cpf invalido`() {
-        var cpfInvalido =  Cpf("1234567891")
-        var cliente = criarCliente()
+        var cpfInvalido = Cliente.Cpf("1234567891")
+        var cliente = Cliente()
         var result = cliente.cpfIsValid(cpfInvalido)
         assert(!result)
 
@@ -32,7 +32,7 @@ class TesteContaDigital {
 
     @Test
     fun `teste consultar extrato`() {
-        var conta = Contadigital()
+        var conta = Contadigital(Cliente())
         conta.Consultarextrato()
 
 
@@ -40,32 +40,32 @@ class TesteContaDigital {
 
     @Test
     fun `teste debito valido`() {
-        var debitar  = Extratomovimentacao(criarCliente())
-        debitar.Debito(250)
+        var debitar  = Extratomovimentacao(Cliente())
+        debitar.Debito(250.00)
     }
 
 
     @Test
     fun `teste debito invalido`() {
-        var debitar  = Extratomovimentacao(criarCliente())
-        debitar.Debito(1001)
+        var debitar  = Extratomovimentacao(Cliente())
+        debitar.Debito(1001.00)
 
     }
     @Test
     fun `teste credito invalido`() {
-        var creditar  = Extratomovimentacao(criarCliente())
-        creditar.Credito(1001)
+        var creditar  = Extratomovimentacao(Cliente())
+        creditar.Credito(1001.00)
 
     }
     @Test
     fun `teste credito valido`() {
         var creditar  = operacaoServiceImpl(ContaRepository())
-        creditar.credito(Contadigital(),2000)
+        creditar.credito(Contadigital(cliente = Cliente()),2000)
     }
     @Test
     fun `teste transferencia valido`() {
         var tranferir  = operacaoServiceImpl(ContaRepository())
-        tranferir.transferencia(Contadigital(), Contadigital(),200)
+        tranferir.transferencia(Contadigital(Cliente()), Contadigital(Cliente()),200)
     }
     @Test
     fun `teste criarCliente`() {
@@ -80,11 +80,11 @@ class TesteContaDigital {
     @Test
     fun `teste fecharConta`() {
 
-        var fechar = Contadigital().fecharConta()
+        var fechar = Contadigital(criarCliente()).fecharConta()
 
     }
     private fun criarCliente(): Cliente {
-        var cpf  = Cpf("12345678910")
+        var cpf  = Cliente.Cpf("12345678910")
         var dataNasc : LocalDate = LocalDate.of(2018,2,2)
         var nome : String = "Thiago Azevedo"
         var cliente = Cliente(nome, cpf, dataNasc)
