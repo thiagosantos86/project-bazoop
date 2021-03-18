@@ -25,10 +25,11 @@ class ContaController {
 
     @PostMapping
     fun criarconta(
+        @PathVariable clienteId: Int,
         @RequestBody contadigital: ContaTO
     ): ResponseEntity<ContaTOResponse> {
 
-        return ResponseEntity.ok(contafacade.criarconta(contadigital))
+        return ResponseEntity.ok(contafacade.criarconta(clienteId))
     }
 //TODO trocartudopara contas
 

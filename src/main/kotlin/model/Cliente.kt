@@ -37,7 +37,7 @@ import java.util.Random
          }
          // mandar um exeçao de negocio
          // tratar controler,serviço,to
-         return  throw ContaException()
+          throw ContaException()
      }
 
 

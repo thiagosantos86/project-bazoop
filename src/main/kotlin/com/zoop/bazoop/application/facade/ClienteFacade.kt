@@ -2,12 +2,9 @@ package com.zoop.bazoop.application.facade
 
 import com.zoop.bazoop.application.model.ClienteTO
 import com.zoop.bazoop.application.model.ClienteTOResponse
-import com.zoop.bazoop.business.Contadigital
 import com.zoop.bazoop.impl.ClienteRepository
-import model.Cliente
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import kotlin.random.Random
 
 @Component
 class ClienteFacade {
@@ -29,9 +26,9 @@ class ClienteFacade {
         return ClienteTOResponse.fromCliente(cliente)
     }
 
-    fun obterCliente(id: Int): ClienteTOResponse {
+    fun obterCliente(clienteId: Int): ClienteTOResponse {
         return ClienteTOResponse.fromCliente(
-            repository.obter(id)
+            repository.obter(clienteId)
         )
     }
 
