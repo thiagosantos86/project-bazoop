@@ -41,7 +41,7 @@ class ContaController {
         return ResponseEntity.ok(MessageTO("Conta excluida com sucesso!!"))
     }
 
-    //put alterar
+    //put altera
     @PutMapping("/{contaId}")
     fun alterarConta(
         @PathVariable contaId: Int,
