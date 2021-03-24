@@ -12,13 +12,9 @@ class ClienteFacade {
     lateinit var repository: ClienteRepository
     fun obterTodosClientes(): List<ClienteTOResponse> {
 
-
         return repository.listar().map { ClienteTOResponse.fromCliente(it) }
-
     }
 
-    // TODO: 23/12/2020
-    //criar cliente
     fun criarCliente(request: ClienteTO): ClienteTOResponse {
         val cliente = request.toDomain()
         repository.salvar(cliente)
@@ -32,7 +28,6 @@ class ClienteFacade {
         )
     }
 
-    //deletar cliente
     fun deletar(id: Int) {
         repository.excluir(id)
     }
@@ -44,8 +39,6 @@ class ClienteFacade {
 
         return ClienteTOResponse.fromCliente(cliente)
     }
-
-
 
     //  traduçao de cliente para  cliente response
 }

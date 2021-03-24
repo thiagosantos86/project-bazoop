@@ -11,18 +11,19 @@ import org.springframework.stereotype.Component
 class ContaFacade {
     @Autowired
     lateinit var contarepository: ContaRepository
+
+    @Autowired
     lateinit var repository: ClienteRepository
     fun obterTodosContas(): List<ContaTOResponse> {
 
         return contarepository.listar().map { ContaTOResponse.fromConta(it) }
     }
 
-    //criar conta
-    fun criarconta(id: Int): ContaTOResponse {
-        //paasar id cliente como parametro
+    fun criarconta(id: Int, request: ContaTO): ContaTOResponse {
         val cliente = repository.obter(id)
+        repository.salvar(cliente)
         val conta = cliente.criarConta()
-        /*println("""seu saldo ${saldo}  seu id $id seu numConta $Numconta""")*/
+        contarepository.salvar(conta)
         return ContaTOResponse.fromConta(conta)
     }
 
@@ -34,7 +35,6 @@ class ContaFacade {
         }
     }
 
-    //deletar cliente
     fun deletar(id: Int) {
         contarepository.excluir(id)
     }
@@ -48,6 +48,4 @@ class ContaFacade {
 
         return conta?.let { ContaTOResponse.fromConta(it) }
     }
-
-
 }

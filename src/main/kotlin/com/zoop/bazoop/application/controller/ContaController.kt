@@ -1,4 +1,5 @@
 package com.zoop.bazoop.application.controller
+
 import com.zoop.bazoop.application.facade.ContaFacade
 import com.zoop.bazoop.application.model.ContaTO
 import com.zoop.bazoop.application.model.ContaTOResponse
@@ -24,12 +25,8 @@ class ContaController {
     //Todo criar um controlor de contas sempre vou precisar do do indentificardor do cliente
 
     @PostMapping
-    fun criarconta(
-        @PathVariable clienteId: Int,
-        @RequestBody contadigital: ContaTO
-    ): ResponseEntity<ContaTOResponse> {
-
-        return ResponseEntity.ok(contafacade.criarconta(clienteId))
+    fun criarconta(@PathVariable clienteId: Int, @RequestBody contadigital: ContaTO): ResponseEntity<ContaTOResponse> {
+        return ResponseEntity.ok(contafacade.criarconta(clienteId,contadigital))
     }
 //TODO trocartudopara contas
 
