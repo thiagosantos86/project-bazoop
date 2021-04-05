@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  db:
+    image: postgres:11.2
+    container_name: banking_postgres_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: rootpass
+      POSTGRES_DB: zoopdb_banking
+    ports:
+      - 5430:5430
+  liquibase:
+    build: ./images/liquibase
+    container_name: account_liquibase
+    environment:
+      LIQUIBASE_URL: jdbc:postgresql://db:5430/zoopdb_banking
+      LIQUIBASE_USERNAME: postgres
+      LIQUIBASE_PASSWORD: rootpass
+      LIQUIBASE_CHANGELOG: src/main/resources/db/changelog.yaml
+      WAIT_HOSTS: db:5430
+    volumes:
+      - ./:/liquibase
+    links:
+      - db
+    depends_on:
+      - db

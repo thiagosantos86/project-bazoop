@@ -1,4 +1,4 @@
 package com.zoop.bazoop.domain
 
-class ClienteNaoEncontradoException : Exception("Clinte não encontrado"){
+class ClienteNaoEncontradoException : Exception("Cliente não encontrado"){
 }

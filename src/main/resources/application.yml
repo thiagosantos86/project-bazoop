@@ -1,0 +1,18 @@
+datasource:
+  url: jdbc:postgresql://localhost:5432/zoopdb_banking
+  username: postgres
+  password: rootpass
+  hikari:
+    maximumPoolSize: 25
+    connectionTimeout: 10000
+    schema: public
+    minimum-idle: 5
+    idle-timeout: 120000
+
+jpa:
+  properties:
+    hibernate:
+      show_sql: false
+      use_sql_comments: true
+      format_sql: true
+      type: trace

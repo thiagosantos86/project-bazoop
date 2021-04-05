@@ -4,12 +4,12 @@ import model.Cliente
 
 import java.util.Random
 
-open class Contadigital(
+open class ContaDigital(
     var cliente: Cliente,
     var id: Int = Random().nextInt(100000000),
     var Numconta: Int = Random().nextInt(1000) + 1,
     var status: Status = Status.ABERTA,
-    var tipo: Tipo = Tipo.CONTACOMUN,
+    var tipo: Tipo = Tipo.CONTACOMUM,
     var Saldo: Double = 1000.0,
     var debito: Int = 50
 ) {
@@ -23,16 +23,13 @@ open class Contadigital(
         print("\nsua conta de numero : ${Numconta} conta foi fechada ")
     }
 
-    fun Pqrcode() {
-    }
-
-    fun Consultarextrato() {
+    fun consultarExtrato() {
         print("\no numero da sua conta e : $Numconta ela esta $status e do tipo $tipo  seu saldo e $Saldo \n")
     }
 }
 
 enum class Tipo {
-    CONTACOMUN, CONTAVIP
+    CONTACOMUM, CONTAVIP
 }
 
 

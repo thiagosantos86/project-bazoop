@@ -1,6 +1,5 @@
 package model
-import com.zoop.bazoop.business.Contadigital
-import com.zoop.bazoop.domain.ClienteNaoEncontradoException
+import com.zoop.bazoop.business.ContaDigital
 import com.zoop.bazoop.domain.service.ContaException
 //import org.graalvm.compiler.debug.TTY.print
 //import org.graalvm.compiler.debug.TTY.println
@@ -12,7 +11,7 @@ import java.util.Random
      var cpf : Cpf = Cpf("12345678910"),
      var data : LocalDate = LocalDate.of(2018,2,2),
      var id: Int = Random().nextInt(100000000),
-     val contas: MutableList<Contadigital> = mutableListOf()
+     val contas: MutableList<ContaDigital> = mutableListOf()
 
  ) {
 
@@ -31,15 +30,15 @@ import java.util.Random
      }
 // lista de contas generikis
 
-     fun criarConta():Contadigital{
+     fun criarConta():ContaDigital{
          if(contas.size < 3 ){
-           return Contadigital(this).also { contas.add(it) }
+           return ContaDigital(this).also { contas.add(it) }
          }
          // mandar um exeçao de negocio
          // tratar controler,serviço,to
           throw ContaException()
      }
-
+//execluir conta aqui
 
      // private fun validateCPFLength(cpf: String) = cpf.length == 11
 

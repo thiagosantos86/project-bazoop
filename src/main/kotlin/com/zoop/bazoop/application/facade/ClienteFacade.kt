@@ -2,7 +2,7 @@ package com.zoop.bazoop.application.facade
 
 import com.zoop.bazoop.application.model.ClienteTO
 import com.zoop.bazoop.application.model.ClienteTOResponse
-import com.zoop.bazoop.impl.ClienteRepository
+import com.zoop.bazoop.repository.ClienteRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

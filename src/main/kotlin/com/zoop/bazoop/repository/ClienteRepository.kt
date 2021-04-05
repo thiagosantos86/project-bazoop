@@ -1,6 +1,5 @@
-package com.zoop.bazoop.impl
+package com.zoop.bazoop.repository
 
-import com.zoop.bazoop.application.model.ContaTO
 import com.zoop.bazoop.domain.ClienteNaoEncontradoException
 import model.Cliente
 //import model.Cpf

@@ -1,9 +1,9 @@
 package teste
 
-import com.zoop.bazoop.business.Contadigital
-import com.zoop.bazoop.domain.service.Extratomovimentacao
-import com.zoop.bazoop.domain.service.operacaoServiceImpl
-import com.zoop.bazoop.impl.ContaRepository
+import com.zoop.bazoop.business.ContaDigital
+import com.zoop.bazoop.domain.service.ExtratoMovimentacao
+import com.zoop.bazoop.domain.service.OperacaoServiceImpl
+import com.zoop.bazoop.repository.ContaRepository
 import model.Cliente
 //import model.Cpf
 import org.junit.jupiter.api.Test
@@ -12,13 +12,11 @@ import kotlin.random.Random
 
 class TesteContaDigital {
 
-
     @Test
     fun `teste validar cpf`() {
         var cliente = Cliente()
         var result = cliente.cpfIsValid(cliente.cpf)
         assert(result)
-
     }
 
     @Test
@@ -27,79 +25,78 @@ class TesteContaDigital {
         var cliente = Cliente()
         var result = cliente.cpfIsValid(cpfInvalido)
         assert(!result)
-
     }
 
     @Test
     fun `teste consultar extrato`() {
-        var conta = Contadigital(Cliente())
-        conta.Consultarextrato()
-
-
+        var conta = ContaDigital(Cliente())
+        conta.consultarExtrato()
     }
 
     @Test
     fun `teste debito valido`() {
-        var debitar  = Extratomovimentacao(Cliente())
-        debitar.Debito(250.00)
+        var debitar = ExtratoMovimentacao(Cliente())
+        debitar.debito(250.00)
     }
-
 
     @Test
     fun `teste debito invalido`() {
-        var debitar  = Extratomovimentacao(Cliente())
-        debitar.Debito(1001.00)
-
+        var debitar = ExtratoMovimentacao(Cliente())
+        debitar.debito(1001.00)
     }
+
     @Test
     fun `teste credito invalido`() {
-        var creditar  = Extratomovimentacao(Cliente())
-        creditar.Credito(1001.00)
-
+        var creditar = ExtratoMovimentacao(Cliente())
+        creditar.credito(1001.00)
     }
+
     @Test
     fun `teste credito valido`() {
-        var creditar  = operacaoServiceImpl(ContaRepository())
-        creditar.credito(Contadigital(cliente = Cliente()),2000)
+        var creditar = OperacaoServiceImpl(ContaRepository())
+        creditar.credito(ContaDigital(cliente = Cliente()), 2000)
     }
+
     @Test
     fun `teste transferencia valido`() {
-        var tranferir  = operacaoServiceImpl(ContaRepository())
-        tranferir.transferencia(Contadigital(Cliente()), Contadigital(Cliente()),200)
+        var tranferir = OperacaoServiceImpl(ContaRepository())
+        tranferir.transferencia(ContaDigital(Cliente()), ContaDigital(Cliente()), 200)
     }
+
     @Test
     fun `teste criarCliente`() {
         var criarcliente = criarCliente()
-
     }
+
     @Test
     fun `teste criarConta`() {
         var criarconta = criarConta()
-
     }
+
     @Test
     fun `teste fecharConta`() {
 
-        var fechar = Contadigital(criarCliente()).fecharConta()
-
+        var fechar = ContaDigital(criarCliente()).fecharConta()
     }
+
     private fun criarCliente(): Cliente {
-        var cpf  = Cliente.Cpf("12345678910")
-        var dataNasc : LocalDate = LocalDate.of(2018,2,2)
-        var nome : String = "Thiago Azevedo"
+        var cpf = Cliente.Cpf("12345678910")
+        var dataNasc: LocalDate = LocalDate.of(2018, 2, 2)
+        var nome: String = "Thiago Azevedo"
         var cliente = Cliente(nome, cpf, dataNasc)
         var id = cliente.id
         var conta = ContaRepository()
-        var NumConta :Int = java.util.Random().nextInt(1000) + 1
-        println("${cliente.nome} ${cliente.cpf. value} ${cliente.data} o id e $id e conta ${NumConta}")
+        var NumConta: Int = java.util.Random().nextInt(1000) + 1
+        println("${cliente.nome} ${cliente.cpf.value} ${cliente.data} o id e $id e conta ${NumConta}")
         return cliente
     }
+
     private fun criarConta(): ContaRepository {
         var cliente: Cliente
         var saldo: Long = 0
         var id: Long = Random.nextLong(100000000)
         var Numconta: Int = java.util.Random().nextInt(1000) + 1
-        var conta =ContaRepository()
+        var conta = ContaRepository()
         println("""seu saldo ${saldo}  seu id $id seu numConta $Numconta""")
         return conta
     }

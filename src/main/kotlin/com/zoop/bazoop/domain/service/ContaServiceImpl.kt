@@ -1,7 +1,7 @@
 package com.zoop.bazoop.domain.service
 
-import com.zoop.bazoop.business.Contadigital
-import com.zoop.bazoop.impl.ContaRepository
+import com.zoop.bazoop.business.ContaDigital
+import com.zoop.bazoop.repository.ContaRepository
 import model.Cliente
 import org.springframework.stereotype.Service
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class ContaServiceImpl (
     private val repository: ContaRepository
 ) : ContaService {
-    override fun criarConta(cliente: Cliente): Contadigital {
-        return repository.salvar(Contadigital(cliente = cliente))
+    override fun criarConta(cliente: Cliente): ContaDigital {
+        return repository.salvar(ContaDigital(cliente = cliente))
     }
 }
