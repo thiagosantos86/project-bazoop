@@ -24,6 +24,8 @@ dependencies {
         /* Excluding Tomcat dependency */
         exclude(module = "spring-boot-starter-tomcat")
     }
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("mysql:mysql-connector-java:8.0.23")
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
