@@ -13,7 +13,7 @@ import javax.persistence.Table
 
 @Entity
 @Table(name="conta_digital")
-open class ContaDigital(
+class ContaDigital(
     @field:ManyToOne(fetch = FetchType.LAZY)
     @field:JoinColumn(name="cliente_id", referencedColumnName = "id")
     val cliente: Cliente,
