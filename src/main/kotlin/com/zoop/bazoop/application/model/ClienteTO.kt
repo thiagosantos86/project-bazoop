@@ -1,6 +1,6 @@
 package com.zoop.bazoop.application.model
 
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 import java.time.LocalDate
 
 open class ClienteTO {
@@ -11,7 +11,6 @@ open class ClienteTO {
     fun alterar(cliente: Cliente) {
         cliente.also {
             it.cpf = Cliente.Cpf("")
-            it.data = data!!
             it.nome = nome!!
         }
     }
@@ -20,7 +19,6 @@ open class ClienteTO {
         return Cliente().also {
             it.cpf = Cliente.Cpf("")
             it.nome = nome!!
-            it.data = data!!
         }
     }
 }

@@ -1,10 +1,9 @@
 package teste
 
 import com.zoop.bazoop.business.ContaDigital
-import com.zoop.bazoop.domain.service.ExtratoMovimentacao
 import com.zoop.bazoop.domain.service.OperacaoServiceImpl
 import com.zoop.bazoop.repository.ContaRepository
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 //import model.Cpf
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
@@ -31,24 +30,6 @@ class TesteContaDigital {
     fun `teste consultar extrato`() {
         var conta = ContaDigital(Cliente())
         conta.consultarExtrato()
-    }
-
-    @Test
-    fun `teste debito valido`() {
-        var debitar = ExtratoMovimentacao(Cliente())
-        debitar.debito(250.00)
-    }
-
-    @Test
-    fun `teste debito invalido`() {
-        var debitar = ExtratoMovimentacao(Cliente())
-        debitar.debito(1001.00)
-    }
-
-    @Test
-    fun `teste credito invalido`() {
-        var creditar = ExtratoMovimentacao(Cliente())
-        creditar.credito(1001.00)
     }
 
     @Test

@@ -1,17 +1,35 @@
 package com.zoop.bazoop.business
 
-import model.Cliente
-
 import java.util.Random
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.EnumType
+import javax.persistence.Enumerated
+import javax.persistence.FetchType
+import javax.persistence.Id
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.Table
 
+@Entity
+@Table(name="conta_digital")
 open class ContaDigital(
-    var cliente: Cliente,
-    var id: Int = Random().nextInt(100000000),
-    var Numconta: Int = Random().nextInt(1000) + 1,
+    @field:ManyToOne(fetch = FetchType.LAZY)
+    @field:JoinColumn(name="cliente_id", referencedColumnName = "id")
+    val cliente: Cliente,
+    @field:Id
+    @field:Column
+    val id: Int = Random().nextInt(100000000),
+    @field:Column
+    val numConta: Int = Random().nextInt(1000) + 1,
+    @field:Enumerated(EnumType.STRING)
+    @field:Column
     var status: Status = Status.ABERTA,
+    @field:Enumerated(EnumType.STRING)
+    @field:Column
     var tipo: Tipo = Tipo.CONTACOMUM,
-    var Saldo: Double = 1000.0,
-    var debito: Int = 50
+    @field:Column
+    var saldo: Double = 1000.0
 ) {
 
     enum class Status {
@@ -20,11 +38,11 @@ open class ContaDigital(
 
     fun fecharConta() {
         var status: Status = Status.FECHADA
-        print("\nsua conta de numero : ${Numconta} conta foi fechada ")
+        print("\nsua conta de numero : ${numConta} conta foi fechada ")
     }
 
     fun consultarExtrato() {
-        print("\no numero da sua conta e : $Numconta ela esta $status e do tipo $tipo  seu saldo e $Saldo \n")
+        print("\no numero da sua conta e : $numConta ela esta $status e do tipo $tipo  seu saldo e $saldo \n")
     }
 }
 

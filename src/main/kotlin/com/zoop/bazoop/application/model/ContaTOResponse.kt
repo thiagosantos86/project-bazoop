@@ -13,7 +13,7 @@ class ContaTOResponse : ContaTO() {
                 it.status = contaDigital.status.toString()
                 it.tipo = contaDigital.tipo.toString()
                 it.contaId = contaDigital.id
-                it.numConta = contaDigital.Numconta
+                it.numConta = contaDigital.numConta
             }
         }
     }

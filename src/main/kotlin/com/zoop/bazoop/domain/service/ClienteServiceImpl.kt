@@ -1,7 +1,7 @@
 package com.zoop.bazoop.domain.service
 
 import com.zoop.bazoop.repository.ClienteRepository
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 import org.springframework.stereotype.Service
 
 @Service

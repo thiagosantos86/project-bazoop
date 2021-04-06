@@ -1,7 +1,7 @@
 package com.zoop.bazoop.repository
 
 import com.zoop.bazoop.domain.ClienteNaoEncontradoException
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 import org.springframework.beans.factory.annotation.Autowired
 //import model.Cpf
 import org.springframework.stereotype.Repository

@@ -1,6 +1,6 @@
 package com.zoop.bazoop.application.model
 
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 
 class ClienteTOResponse : ClienteTO() {
     var clienteId: Int = 0

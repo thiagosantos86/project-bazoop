@@ -2,7 +2,7 @@ package com.zoop.bazoop.application.model
 
 import com.zoop.bazoop.business.ContaDigital
 import com.zoop.bazoop.business.Tipo
-import model.Cliente
+import com.zoop.bazoop.business.Cliente
 
 open class ContaTO {
 

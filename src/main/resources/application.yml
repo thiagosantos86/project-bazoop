@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/bazoop
-    username: bazoop
+    username: root
     password: root
     hikari:
       maximumPoolSize: 25

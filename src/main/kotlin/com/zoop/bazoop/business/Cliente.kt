@@ -1,15 +1,14 @@
-package model
+package com.zoop.bazoop.business
 
-import com.zoop.bazoop.business.ContaDigital
 import com.zoop.bazoop.domain.service.ContaException
-//import org.graalvm.compiler.debug.TTY.print
-//import org.graalvm.compiler.debug.TTY.println
 import java.time.LocalDate
 import java.util.Random
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Embeddable
 import javax.persistence.Embedded
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.Id
 import javax.persistence.OneToMany
 import javax.persistence.Table
@@ -17,11 +16,16 @@ import javax.persistence.Table
 @Entity
 @Table(name = "cliente")
 class Cliente(
+    @field:Column
     var nome: String = "A",
-    @Embedded  var cpf: Cpf = Cpf("12345678910"),
-    var data: LocalDate = LocalDate.of(2018, 2, 2),
-    @Id var id: Int = Random().nextInt(100000000),
-    @OneToMany val contas: MutableList<ContaDigital> = mutableListOf()
+    @field:Embedded  var cpf: Cpf = Cpf("12345678910"),
+    @field:Column
+    val data: LocalDate = LocalDate.of(2018, 2, 2),
+    @field:Id
+    @field:Column
+    val id: Int = Random().nextInt(100000000),
+    @field:OneToMany(cascade = [CascadeType.ALL], mappedBy = "cliente", fetch = FetchType.EAGER)
+    val contas: MutableList<ContaDigital> = mutableListOf()
 
 ) {
 
@@ -65,6 +69,6 @@ class Cliente(
     }
 
     @Embeddable
-    class Cpf(@Column(name = "cpf") var value: String)
+    class Cpf(@field:Column(name = "cpf") var value: String = "")
 }
 
