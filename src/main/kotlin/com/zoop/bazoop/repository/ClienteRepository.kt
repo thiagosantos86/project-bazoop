@@ -23,10 +23,7 @@ class ClienteRepository {
     }
 
     fun excluir(clienteId: Int) {
-
-        if (!repository.removeIf { it.id == clienteId }) {
-            throw ClienteNaoEncontradoException()
-        }
+        repository.delete(obter(clienteId))
     }
 
     fun alterar(cliente: Cliente): Cliente {
@@ -34,5 +31,5 @@ class ClienteRepository {
         return cliente
     }
 
-    fun listar(): List<Cliente> = repository
+    fun listar(): List<Cliente> = repository.findAll()
 }

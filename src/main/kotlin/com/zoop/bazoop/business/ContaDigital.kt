@@ -14,21 +14,16 @@ import javax.persistence.Table
 @Entity
 @Table(name="conta_digital")
 class ContaDigital(
-    @field:ManyToOne(fetch = FetchType.LAZY)
-    @field:JoinColumn(name="cliente_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="cliente_id", referencedColumnName = "id")
     val cliente: Cliente,
-    @field:Id
-    @field:Column
+    @Id
     val id: Int = Random().nextInt(100000000),
-    @field:Column
     val numConta: Int = Random().nextInt(1000) + 1,
     @field:Enumerated(EnumType.STRING)
-    @field:Column
     var status: Status = Status.ABERTA,
     @field:Enumerated(EnumType.STRING)
-    @field:Column
     var tipo: Tipo = Tipo.CONTACOMUM,
-    @field:Column
     var saldo: Double = 1000.0
 ) {
 

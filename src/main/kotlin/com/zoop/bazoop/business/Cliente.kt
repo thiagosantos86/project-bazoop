@@ -16,15 +16,12 @@ import javax.persistence.Table
 @Entity
 @Table(name = "cliente")
 class Cliente(
-    @field:Column
     var nome: String = "A",
     @field:Embedded  var cpf: Cpf = Cpf("12345678910"),
-    @field:Column
     val data: LocalDate = LocalDate.of(2018, 2, 2),
-    @field:Id
-    @field:Column
+    @Id
     val id: Int = Random().nextInt(100000000),
-    @field:OneToMany(cascade = [CascadeType.ALL], mappedBy = "cliente", fetch = FetchType.EAGER)
+    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "cliente", fetch = FetchType.EAGER)
     val contas: MutableList<ContaDigital> = mutableListOf()
 
 ) {
@@ -69,6 +66,6 @@ class Cliente(
     }
 
     @Embeddable
-    class Cpf(@field:Column(name = "cpf") var value: String = "")
+    class Cpf(@Column(name = "cpf") var value: String = "")
 }
 
