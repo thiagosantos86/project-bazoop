@@ -3,6 +3,7 @@ package com.zoop.bazoop.repository
 import com.zoop.bazoop.domain.ClienteNaoEncontradoException
 import com.zoop.bazoop.business.Cliente
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.repository.findByIdOrNull
 //import model.Cpf
 import org.springframework.stereotype.Repository
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository
 class ClienteRepository {
     @Autowired
     lateinit var repository: ClienteJPARepository
-    private val database: MutableList<Cliente> = ArrayList()
+
 
     fun salvar(cliente: Cliente): Cliente {
         return repository.save(cliente)
@@ -18,12 +19,12 @@ class ClienteRepository {
 
     fun obter(clienteId: Int): Cliente {
 
-        return database.firstOrNull { it.id == clienteId } ?: throw ClienteNaoEncontradoException()
+        return repository.findByIdOrNull(clienteId)  ?: throw ClienteNaoEncontradoException()
     }
 
     fun excluir(clienteId: Int) {
 
-        if (!database.removeIf { it.id == clienteId }) {
+        if (!repository.removeIf { it.id == clienteId }) {
             throw ClienteNaoEncontradoException()
         }
     }
@@ -33,5 +34,5 @@ class ClienteRepository {
         return cliente
     }
 
-    fun listar(): List<Cliente> = database
+    fun listar(): List<Cliente> = repository
 }
