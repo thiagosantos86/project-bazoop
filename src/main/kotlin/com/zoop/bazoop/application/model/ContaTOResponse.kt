@@ -7,7 +7,7 @@ class ContaTOResponse : ContaTO() {
 
     companion object {
         fun fromConta(contaDigital: ContaDigital): ContaTOResponse {
-            //todo criar cliente to response tecnica todomain
+
             return ContaTOResponse().also {
 
                 it.status = contaDigital.status.toString()

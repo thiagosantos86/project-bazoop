@@ -10,14 +10,14 @@ open class ClienteTO {
 
     fun alterar(cliente: Cliente) {
         cliente.also {
-            it.cpf = Cliente.Cpf("")
+            it.cpf = Cliente.Cpf()
             it.nome = nome!!
         }
     }
 
     fun toDomain(): Cliente {
         return Cliente().also {
-            it.cpf = Cliente.Cpf("")
+            it.cpf = Cliente.Cpf()
             it.nome = nome!!
         }
     }

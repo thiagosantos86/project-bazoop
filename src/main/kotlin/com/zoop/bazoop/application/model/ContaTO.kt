@@ -10,7 +10,6 @@ open class ContaTO {
     var status: String? = null
     var tipo: String? = null
 
-    //todo refatora alterar e todomain para compartilhar a mesma logica
     fun alterar(contaDigital: ContaDigital) {
         contaDigital.also {
             it.status = ContaDigital.Status.ABERTA
