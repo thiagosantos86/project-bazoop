@@ -39,6 +39,18 @@ class TesteContaDigital {
     }
 
     @Test
+    fun `teste debito valido`() {
+        var debito = OperacaoServiceImpl(ContaRepository())
+        debito.debito(ContaDigital(cliente = Cliente()), 200)
+    }
+
+    @Test
+    fun `teste debito invalido`() {
+        var debito = OperacaoServiceImpl(ContaRepository())
+        debito.debito(ContaDigital(cliente = Cliente()), 2000)
+    }
+
+    @Test
     fun `teste transferencia valido`() {
         var tranferir = OperacaoServiceImpl(ContaRepository())
         tranferir.transferencia(ContaDigital(Cliente()), ContaDigital(Cliente()), 200)

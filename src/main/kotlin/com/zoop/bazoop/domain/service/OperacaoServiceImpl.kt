@@ -15,18 +15,18 @@ class OperacaoServiceImpl(
     }
 
     override fun debito(contaDigital: ContaDigital, valor: Int): ContaDigital {
-        contaDigital.saldo = contaDigital.saldo - valor
-        print("\n vc teve um debito de ${valor} \n")
+        if (contaDigital.saldo >= valor) {
+            contaDigital.saldo = contaDigital.saldo - valor
+            print("\n vc teve um debito de ${valor} e seu saldo e ${contaDigital.saldo} \n")
+        } else
+            print("vc não tem saldo suficiente")
         return repository.salvar(contaDigital)
     }
 
     override fun transferencia(contaDebitada: ContaDigital, contaCreditada: ContaDigital, valor: Int): ContaDigital {
 
-        contaDebitada.saldo = contaDebitada.saldo - valor
-        print("\n vc teve um debito de $valor e seu saldo e ${contaDebitada.saldo}\n")
-        contaCreditada.saldo = contaCreditada.saldo + valor
-        println("\n vc teve um credito de $valor e seu saldo e ${contaCreditada.saldo} \n")
-        repository.salvar(contaCreditada)
-        return repository.salvar(contaDebitada)
+        debito(contaDebitada, valor)
+        credito(contaCreditada, valor)
+        return contaDebitada
     }
 }

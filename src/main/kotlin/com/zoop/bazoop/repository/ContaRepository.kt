@@ -10,9 +10,6 @@ class ContaRepository {
     private val database: MutableList<ContaDigital> = ArrayList()
 
     fun salvar(contaDigital: ContaDigital): ContaDigital {
-        // TODO: Buscar se já existe conta com o mesmo id.
-        // Se existir, sobrescrever com a conta informada.
-        // Se não existir, adicionar
         database.add(contaDigital)
         return contaDigital
     }
