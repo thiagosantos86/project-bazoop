@@ -23,9 +23,7 @@ class ClienteFacade {
     }
 
     fun obterCliente(clienteId: Int): ClienteTOResponse {
-        return ClienteTOResponse.fromCliente(
-            repository.obter(clienteId)
-        )
+        return ClienteTOResponse.fromCliente(repository.obter(clienteId))
     }
 
     fun deletar(id: Int) {

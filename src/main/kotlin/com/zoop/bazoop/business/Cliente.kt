@@ -17,8 +17,8 @@ import javax.persistence.Table
 @Table(name = "cliente")
 class Cliente(
     var nome: String = "A",
-    @field:Embedded  var cpf: Cpf = Cpf("12345678910"),
-    val data: LocalDate = LocalDate.of(2018, 2, 2),
+    @field:Embedded  var cpf: Cpf = Cpf("05794654708"),
+    var data: LocalDate = LocalDate.of(1986,9,11),
     @Id
     val id: Int = Random().nextInt(100000000),
     @OneToMany(cascade = [CascadeType.ALL], mappedBy = "cliente", fetch = FetchType.EAGER)
@@ -66,6 +66,6 @@ class Cliente(
     }
 
     @Embeddable
-    class Cpf(@Column(name = "cpf") var value: String = "")
+    class Cpf(@Column(name = "cpf") var value: String = "057.946.547-08")
 }
 

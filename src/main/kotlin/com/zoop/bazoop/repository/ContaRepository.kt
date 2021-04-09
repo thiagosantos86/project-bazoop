@@ -1,16 +1,22 @@
 package com.zoop.bazoop.repository
 
 import com.zoop.bazoop.business.ContaDigital
+import com.zoop.bazoop.domain.service.AccountCreationLimitExceededException
 import com.zoop.bazoop.domain.service.ContaException
 //import model.Cpf
 import org.springframework.stereotype.Repository
 
 @Repository
 class ContaRepository {
+
     private val database: MutableList<ContaDigital> = ArrayList()
 
     fun salvar(contaDigital: ContaDigital): ContaDigital {
-        database.add(contaDigital)
+        if (database.size < 3) {
+            database.add(contaDigital)
+        }else
+        {throw AccountCreationLimitExceededException()}
+
         return contaDigital
     }
 
